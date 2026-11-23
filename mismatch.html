@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Temporary mismatch marker setup</title><body><p id="status">Setting a synthetic test-only recovery marker…</p><script>
+(async()=>{
+  const email='zapia-mismatch-target-20261123@ethereal.email';
+  const bytes=new TextEncoder().encode(email.trim().toLowerCase());
+  const digest=await crypto.subtle.digest('SHA-256',bytes);
+  const fingerprint=Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('');
+  localStorage.setItem('lsp-auth-recovery-active',JSON.stringify({requestedAt:Date.now(),emailFingerprint:fingerprint}));
+  document.querySelector('#status').textContent='Synthetic mismatch marker set. In this same browser, open the reset email for zapia-recovery-test-20261123@ethereal.email at Ethereal and click its link. This helper is temporary and must be removed.';
+})();
+</script></body></html>
