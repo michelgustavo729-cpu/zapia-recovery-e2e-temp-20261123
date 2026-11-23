@@ -1,0 +1,8 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Temporary synthetic session reset</title><body><p id="status">Clearing only the disposable project's local test session…</p><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4/dist/umd/supabase.min.js" integrity="sha384-AkNSQdptcXlJ0/NBZc4qGk86cDVXcCevwoWgEKIpHOEfbvlXGLlIkimQtONt8KNf" crossorigin="anonymous"></script><script>
+(async()=>{
+ const {createClient}=supabase;
+ const client=createClient('https://otatwuulztvyvkvdgymx.supabase.co','sb_publishable_7ooeFjEH8yw9W8tnjajGzg_i3_Z81x7',{auth:{flowType:'pkce',detectSessionInUrl:true,persistSession:true,autoRefreshToken:true}});
+ const {error}=await client.auth.signOut({scope:'local'});
+ document.querySelector('#status').textContent=error?'Test session sign-out failed.':'Disposable project's local test session cleared.';
+})();
+</script></body></html>
